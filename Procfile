@@ -1,1 +1,1 @@
-worker: python3 main.py
+web: playwright install --with-deps && python3 main.py
