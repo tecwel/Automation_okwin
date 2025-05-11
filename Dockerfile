@@ -1,12 +1,19 @@
-FROM mcr.microsoft.com/playwright/python:v1.43.0-jammy
+FROM python:3.10-slim
 
+# System dependencies for Playwright
+RUN apt-get update && apt-get install -y wget gnupg curl libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxss1 libasound2 libxrandr2 libgtk-3-0 libgbm-dev
+
+# Set working directory
 WORKDIR /app
 
 # Copy all files
 COPY . .
 
-# Install your Python dependencies
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Run your app
-CMD ["python3", "main.py"]
+# Install Playwright and its dependencies
+RUN pip install playwright && playwright install --with-deps
+
+# Run the app
+CMD ["python", "main.py"]
