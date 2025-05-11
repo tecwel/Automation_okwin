@@ -1,6 +1,5 @@
 import subprocess
-subprocess.run(["python3", "-m", "playwright", "install", "--with-deps"], check=True)
-
+subprocess.run(["python3", "-m", "playwright", "install", "chromium"], check=True)
 
 import asyncio
 import json
