@@ -1,3 +1,7 @@
+import subprocess
+subprocess.run(["python3", "-m", "playwright", "install", "--with-deps"], check=True)
+
+
 import asyncio
 import json
 import os
