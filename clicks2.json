@@ -1,0 +1,296 @@
+{
+    "bet1": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 2.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 5.82
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 9.76
+        }
+    ],
+    "bet2": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.73
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]",
+            "delay": 5.96
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 9.76
+        }
+    ],
+    "bet3": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.47
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[2]",
+            "delay": 5.31
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 7.89
+        }
+    ],
+    "bet4": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.4
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[3]",
+            "delay": 6.96
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 9.73
+        }
+    ],
+    "bet5": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.99
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[4]",
+            "delay": 6.96
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 9.62
+        }
+    ],
+    "bet6": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.21
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[5]",
+            "delay": 7.25
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 9.54
+        }
+    ],
+    "bet7": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 2.67
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]",
+            "delay": 5.91
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 9.03
+        }
+    ],
+    "bet8": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 2.57
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]",
+            "delay": 5.76
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]",
+            "delay": 8.02
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 11.77
+        }
+    ],
+    "bet9": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.6
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]",
+            "delay": 7.4
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[2]",
+            "delay": 9.8
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 12.64
+        }
+    ],
+    "bet10": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.53
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]",
+            "delay": 6.13
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 10.33
+        }
+    ],
+    "bet11": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.67
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]",
+            "delay": 7.1
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]",
+            "delay": 9.41
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 11.08
+        }
+    ],
+    "bet12": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 2.68
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]",
+            "delay": 4.62
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[2]",
+            "delay": 7.88
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 10.63
+        }
+    ],
+    "bet13": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.99
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]",
+            "delay": 7.12
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[3]",
+            "delay": 9.21
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 12.02
+        }
+    ],
+    "bet14": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 2.67
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]",
+            "delay": 4.88
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[4]",
+            "delay": 8.12
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 11.75
+        }
+    ],
+    "bet15": [
+        {
+            "xpath": "id(\"app\")/div[2]/div[1]/div[5]/div[2]",
+            "delay": 1.36
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[3]/div[5]/div[1]",
+            "delay": 3.14
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]",
+            "delay": 5.35
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[2]/div[2]/div[2]/div[5]",
+            "delay": 8.49
+        },
+        {
+            "xpath": "id(\"app\")/div[2]/div[5]/div[1]/div[3]/button[2]",
+            "delay": 11.68
+        }
+    ]
+}
