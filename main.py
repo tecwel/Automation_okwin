@@ -7,7 +7,7 @@ from playwright.async_api import async_playwright
 # === Configuration ===
 URL = "https://999okwin.com/#/login"
 LOGIN_SUCCESS_URL = "https://999okwin.com/#/"
-LOGIN_JSON_FILE = "css_and_id3.json"
+LOGIN_JSON_FILE = "css_and _id3.json"
 CLICKS_JSON_FILE = "clicks2.json"
 USERNAME = os.getenv("USERNAME", "")
 PASSWORD = os.getenv("PASSWORD", "")
@@ -64,10 +64,9 @@ async def main():
     pre_assumed_amount = 8888
     current_bet_number = 1
     first_run = True
-    previous_period = 0
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)  # Railway must run headless
+        browser = await p.chromium.launch(headless=False)
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
             viewport={"width": 480, "height": 720},
@@ -96,7 +95,7 @@ async def main():
 
         async def check_condition():
             try:
-                data_row = page.locator("div.van-row").nth(1)
+                data_row = page.locator("div.van-row").nth(1)  # Use second row (index 1), skip header
                 period_elem = data_row.locator("div.van-col--10")
                 condition_elem = data_row.locator("div.van-col--5 span")
 
@@ -106,7 +105,14 @@ async def main():
                 period = await period_elem.inner_text()
                 cond = await condition_elem.inner_text()
                 return cond.strip(), period.strip()[-5:]
+
             except Exception as e:
+                try:
+                    debug_html = await page.locator("div.van-row").nth(1).inner_html()
+                    log_event(f"[DEBUG] Data row HTML:\n{debug_html}")
+                except Exception as inner_e:
+                    log_event(f"[DEBUG] Failed to get data row HTML: {inner_e}")
+
                 log_event(f"Condition check failed: {e}")
                 return None, None
 
@@ -139,7 +145,7 @@ async def main():
                     log_event(f"Error executing click {xpath}: {e}")
                     await browser.close()
                     return
-            log_event("Bet executed successfully.")
+            log_event("Bet executed successfully.")    
 
             current_second = datetime.now().second
             wait_time = 70 - current_second
@@ -161,43 +167,24 @@ async def main():
                 log_event(f"Lost {bet_key}, Loss: {(pre_assumed_amount - 8888):.2f}")
                 return bet_number + 1
 
-        async def reliable_check_condition(retries=5, delay=1):
-            for _ in range(retries):
-                cond, period = await check_condition()
-                if cond and period:
-                    return cond, period
-                await asyncio.sleep(delay)
-            return None, None
-
         while True:
             try:
                 if first_run:
                     target_time = (datetime.now() + timedelta(minutes=1)).replace(second=20, microsecond=0)
                     log_event(f"Waiting until {target_time} to start betting...")
                     while datetime.now() < target_time:
-                        await asyncio.sleep(1)
-                    cond, period = await reliable_check_condition()
-                    previous_period = period
-                    current_bet_number = await execute_bet(current_bet_number)
+                        await asyncio.sleep(1)     
                     first_run = False
 
                 cond, period = await check_condition()
                 log_event(f"Period: {period}, Condition: {cond}")
-
+                
                 if cond and period and current_bet_number == 1 and is_in_crucial_range(period):
                     log_event(f"Skipping bet1 due to crucial range in period {period}")
                     await asyncio.sleep(60)
                     continue
 
-                if period == (str(int(previous_period) + 1)):
-                    log_event(f"Period is continuous")
-                    previous_period = period
-                else:
-                    log_event(f"Period is not continuous")
-
                 current_bet_number = await execute_bet(current_bet_number)
-                if period == "11339":
-                    previous_period = "10000"
 
             except Exception as e:
                 log_event(f"Fatal error in main loop: {e}")
