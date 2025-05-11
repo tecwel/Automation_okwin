@@ -1,16 +1,8 @@
-import subprocess
 import asyncio
 import json
 import os
 from datetime import datetime, timedelta
 from playwright.async_api import async_playwright
-
-print("🔧 App started on Railway...")
-
-# Install Chromium browser only (avoid OS-level deps)
-subprocess.run(["python3", "-m", "playwright", "install", "chromium"], check=True)
-
-print("🔧 Chromium installed. Preparing to run async main...")
 
 # === Configuration ===
 URL = "https://999okwin.com/#/login"
@@ -36,11 +28,13 @@ BET_AMOUNTS = {
     "bet10": 1000, "bet11": 2000, "bet12": 5000
 }
 
+
 def log_event(message):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     with open(LOG_FILE_PATH, "a", encoding="utf-8") as log_file:
         log_file.write(f"[{timestamp}] {message}\n")
     print(f"[{timestamp}] {message}")
+
 
 def is_in_crucial_range(period):
     try:
@@ -50,6 +44,7 @@ def is_in_crucial_range(period):
         log_event(f"Crucial range check failed: {e}")
         return False
 
+
 async def load_json(filepath):
     try:
         with open(filepath, "r", encoding="utf-8") as f:
@@ -58,21 +53,21 @@ async def load_json(filepath):
         log_event(f"Failed to load {filepath}: {e}")
         return None
 
+
 async def main():
-    print("🔧 Entering main async function...")
     login_selectors = await load_json(LOGIN_JSON_FILE)
     click_data = await load_json(CLICKS_JSON_FILE)
 
     if not login_selectors or not click_data:
-        log_event("Failed to load selectors or click data.")
         return
 
     pre_assumed_amount = 8888
     current_bet_number = 1
     first_run = True
+    previous_period = 0
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        browser = await p.chromium.launch(headless=True)  # Railway must run headless
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
             viewport={"width": 480, "height": 720},
@@ -112,11 +107,6 @@ async def main():
                 cond = await condition_elem.inner_text()
                 return cond.strip(), period.strip()[-5:]
             except Exception as e:
-                try:
-                    debug_html = await page.locator("div.van-row").nth(1).inner_html()
-                    log_event(f"[DEBUG] Data row HTML:\n{debug_html}")
-                except Exception as inner_e:
-                    log_event(f"[DEBUG] Failed to get data row HTML: {inner_e}")
                 log_event(f"Condition check failed: {e}")
                 return None, None
 
@@ -149,7 +139,7 @@ async def main():
                     log_event(f"Error executing click {xpath}: {e}")
                     await browser.close()
                     return
-            log_event("Bet executed successfully.")    
+            log_event("Bet executed successfully.")
 
             current_second = datetime.now().second
             wait_time = 70 - current_second
@@ -171,32 +161,48 @@ async def main():
                 log_event(f"Lost {bet_key}, Loss: {(pre_assumed_amount - 8888):.2f}")
                 return bet_number + 1
 
+        async def reliable_check_condition(retries=5, delay=1):
+            for _ in range(retries):
+                cond, period = await check_condition()
+                if cond and period:
+                    return cond, period
+                await asyncio.sleep(delay)
+            return None, None
+
         while True:
             try:
                 if first_run:
                     target_time = (datetime.now() + timedelta(minutes=1)).replace(second=20, microsecond=0)
                     log_event(f"Waiting until {target_time} to start betting...")
                     while datetime.now() < target_time:
-                        await asyncio.sleep(1)     
+                        await asyncio.sleep(1)
+                    cond, period = await reliable_check_condition()
+                    previous_period = period
+                    current_bet_number = await execute_bet(current_bet_number)
                     first_run = False
 
                 cond, period = await check_condition()
                 log_event(f"Period: {period}, Condition: {cond}")
-                
+
                 if cond and period and current_bet_number == 1 and is_in_crucial_range(period):
                     log_event(f"Skipping bet1 due to crucial range in period {period}")
                     await asyncio.sleep(60)
                     continue
 
+                if period == (str(int(previous_period) + 1)):
+                    log_event(f"Period is continuous")
+                    previous_period = period
+                else:
+                    log_event(f"Period is not continuous")
+
                 current_bet_number = await execute_bet(current_bet_number)
+                if period == "11339":
+                    previous_period = "10000"
 
             except Exception as e:
                 log_event(f"Fatal error in main loop: {e}")
                 await browser.close()
                 return
 
-# 👇 Top-level exception handler to log errors early
-try:
+if __name__ == "__main__":
     asyncio.run(main())
-except Exception as e:
-    print(f"❌ Fatal error at top level: {e}")
