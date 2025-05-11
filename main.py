@@ -1,11 +1,16 @@
 import subprocess
-subprocess.run(["python3", "-m", "playwright", "install", "chromium"], check=True)
-
 import asyncio
 import json
 import os
 from datetime import datetime, timedelta
 from playwright.async_api import async_playwright
+
+print("🔧 App started on Railway...")
+
+# Install Chromium browser only (avoid OS-level deps)
+subprocess.run(["python3", "-m", "playwright", "install", "chromium"], check=True)
+
+print("🔧 Chromium installed. Preparing to run async main...")
 
 # === Configuration ===
 URL = "https://999okwin.com/#/login"
@@ -31,13 +36,11 @@ BET_AMOUNTS = {
     "bet10": 1000, "bet11": 2000, "bet12": 5000
 }
 
-
 def log_event(message):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     with open(LOG_FILE_PATH, "a", encoding="utf-8") as log_file:
         log_file.write(f"[{timestamp}] {message}\n")
     print(f"[{timestamp}] {message}")
-
 
 def is_in_crucial_range(period):
     try:
@@ -47,7 +50,6 @@ def is_in_crucial_range(period):
         log_event(f"Crucial range check failed: {e}")
         return False
 
-
 async def load_json(filepath):
     try:
         with open(filepath, "r", encoding="utf-8") as f:
@@ -56,12 +58,13 @@ async def load_json(filepath):
         log_event(f"Failed to load {filepath}: {e}")
         return None
 
-
 async def main():
+    print("🔧 Entering main async function...")
     login_selectors = await load_json(LOGIN_JSON_FILE)
     click_data = await load_json(CLICKS_JSON_FILE)
 
     if not login_selectors or not click_data:
+        log_event("Failed to load selectors or click data.")
         return
 
     pre_assumed_amount = 8888
@@ -192,5 +195,8 @@ async def main():
                 await browser.close()
                 return
 
-if __name__ == "__main__":
+# 👇 Top-level exception handler to log errors early
+try:
     asyncio.run(main())
+except Exception as e:
+    print(f"❌ Fatal error at top level: {e}")
