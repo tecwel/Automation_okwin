@@ -7,7 +7,7 @@ from playwright.async_api import async_playwright
 # === Configuration ===
 URL = "https://999okwin.com/#/login"
 LOGIN_SUCCESS_URL = "https://999okwin.com/#/"
-LOGIN_JSON_FILE = "css_and _id3.json"
+LOGIN_JSON_FILE = "css_and_id3.json"
 CLICKS_JSON_FILE = "clicks2.json"
 USERNAME = os.getenv("USERNAME", "")
 PASSWORD = os.getenv("PASSWORD", "")
