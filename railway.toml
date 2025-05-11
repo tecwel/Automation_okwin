@@ -1,2 +1,0 @@
-[build]
-postInstall = "playwright install --with-deps"
