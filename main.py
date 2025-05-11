@@ -1,5 +1,6 @@
 import asyncio
 import json
+import os
 from datetime import datetime, timedelta
 from playwright.async_api import async_playwright
 
@@ -8,8 +9,8 @@ URL = "https://999okwin.com/#/login"
 LOGIN_SUCCESS_URL = "https://999okwin.com/#/"
 LOGIN_JSON_FILE = "css_and_id3.json"
 CLICKS_JSON_FILE = "clicks2.json"
-USERNAME = ""  # Set via Railway env variable or hardcode
-PASSWORD = ""  # Set via Railway env variable or hardcode
+USERNAME = os.getenv("USERNAME", "")
+PASSWORD = os.getenv("PASSWORD", "")
 LOG_FILE_PATH = "bet_log.txt"
 
 CRUCIAL_RANGES = [
